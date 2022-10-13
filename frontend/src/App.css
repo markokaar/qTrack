@@ -1,0 +1,98 @@
+body {
+    position: relative;
+}
+
+.navbar {
+    z-index: 10;
+}
+
+.week {
+    display: grid;
+    grid-template-columns: 4rem auto;
+    grid-template-rows: auto;
+    gap: 1px 1px;
+    grid-template-areas:
+    ". header"
+    "timeContainer main";
+}
+
+.week li {
+    list-style: none;
+}
+
+.week ul {
+    margin: 0;
+    padding: 0;
+}
+
+.weekDays,
+.dayNumbers,
+.splitter {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.header {
+    grid-area: header;
+}
+
+.splitter li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background-color: lightgray;
+    z-index: 1;
+}
+
+.weekDays li,
+.dayNumbers li {
+    margin: auto;
+}
+
+.timeContainer {
+    grid-area: timeContainer;
+    justify-content: left;
+}
+
+.times {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.times li {
+    min-height: 4rem;
+}
+
+.times li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: lightgray;
+    z-index: 1;
+}
+
+.eventsContainer {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(96, 1fr);
+    grid-area: main;
+    position: relative;
+}
+
+.eventBox {
+    display: grid;
+    position: absolute;
+    border-radius: 3px;
+    z-index: 5;
+    color: white;
+    grid-auto-flow: column;
+    padding: 0 0.2rem;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
