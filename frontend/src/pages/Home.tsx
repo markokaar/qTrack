@@ -56,7 +56,7 @@ export const Home = (props: Props) => {
                             <ListGroup.Item className="p-0">
                                 <Stack className="alert alert-danger m-0 py-2 rounded-0">
                                     <div className="d-flex justify-content-between">
-                                        "Chuck's birthday" is coming in 3 days (March 10th).
+                                        "Chuck's birthday" is in 3 days (March 10th).
                                         <Link to="" className="text-dark ms-auto ps-1">
                                             <FaTimes/>
                                         </Link>
