@@ -64,14 +64,15 @@ body {
 
 .times li {
     min-height: 4rem;
+    top: 0;
 }
 
 .times li::after {
     content: "";
     position: absolute;
-    left: 0;
+    left: 4rem;
     height: 1px;
-    width: 100%;
+    width: calc(100% - 4rem);
     background-color: lightgray;
     z-index: 1;
 }

@@ -8,7 +8,7 @@ export const Week = (props: Props) => {
     return (
         <>
             <div className="week bg-light">
-                <div className="header bg-dark bg-opacity-25">
+                <div className="header">
                     <ul className="splitter">
                         <li></li>
                         <li></li>
@@ -40,7 +40,7 @@ export const Week = (props: Props) => {
                     </ul>
                 </div>
 
-                <div className="timeContainer bg-dark bg-opacity-25">
+                <div className="timeContainer">
                     <ul className="times">
                         <li>00:00</li>
                         <li>01:00</li>
