@@ -27,9 +27,18 @@ export const NavBar = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Link to="/" className="dropdown-item"><FaHome/> Home</Link>
-                        <Link to="/profile" className="dropdown-item"><FaUserEdit/> Profile</Link>
-                        <Link to="/settings" className="dropdown-item"><FaCog/> Settings</Link>
+                        <Link to="/" className="dropdown-item">
+                            <FaHome className="align-middle"/>
+                            <span className="align-middle"> Home</span>
+                        </Link>
+                        <Link to="/profile" className="dropdown-item">
+                            <FaUserEdit className="align-middle"/>
+                            <span className="align-middle"> Profile</span>
+                        </Link>
+                        <Link to="/settings" className="dropdown-item">
+                            <FaCog className="align-middle"/>
+                            <span className="align-middle"> Settings</span>
+                        </Link>
                         <Dropdown.Divider/>
                         <Link to="/logout" className="dropdown-item">Log out</Link>
                     </Dropdown.Menu>
