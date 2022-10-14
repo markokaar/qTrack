@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/esm/Row';
 import Stack from 'react-bootstrap/esm/Stack';
 import {FaRegBell, FaRegCompass, FaRegPlusSquare, FaTimes} from 'react-icons/fa';
 import {Link} from 'react-router-dom';
+import {Notification} from "../components/Notification";
 
 type Props = {};
 export const Home = (props: Props) => {
@@ -35,6 +36,7 @@ export const Home = (props: Props) => {
                         </Card.Body>
                     </Card>
                 </Col>
+
                 <Col sm={5} className="p-2">
                     <Card>
                         <Card.Header>
@@ -42,39 +44,9 @@ export const Home = (props: Props) => {
                             <span className="align-middle"> Notifications</span>
                         </Card.Header>
                         <ListGroup variant="flush">
-                            <ListGroup.Item className="p-0">
-                                <Stack className="alert alert-warning m-0 py-2 rounded-0">
-                                    <div className="d-flex justify-content-between">
-                                        An event "Work" started.
-                                        <Link to="" className="text-dark ms-auto ps-1">
-                                            <FaTimes/>
-                                        </Link>
-                                    </div>
-                                    <span className="fs-6 text-muted text-end">15m ago</span>
-                                </Stack>
-                            </ListGroup.Item>
-                            <ListGroup.Item className="p-0">
-                                <Stack className="alert alert-danger m-0 py-2 rounded-0">
-                                    <div className="d-flex justify-content-between">
-                                        "Chuck's birthday" is in 3 days (March 10th).
-                                        <Link to="" className="text-dark ms-auto ps-1">
-                                            <FaTimes/>
-                                        </Link>
-                                    </div>
-                                    <span className="fs-6 text-muted text-end">4h ago</span>
-                                </Stack>
-                            </ListGroup.Item>
-                            <ListGroup.Item className="p-0">
-                                <Stack className="alert alert-light m-0 py-2 rounded-0">
-                                    <div className="d-flex justify-content-between">
-                                        Normal notification.
-                                        <Link to="" className="text-dark ms-auto ps-1">
-                                            <FaTimes/>
-                                        </Link>
-                                    </div>
-                                    <span className="fs-6 text-muted text-end">1d ago</span>
-                                </Stack>
-                            </ListGroup.Item>
+                            <Notification content={'An event "Work" started.'} time={"15m"} color={"warning"} />
+                            <Notification content={`"Chuck's birthday" is in 3 days (March 10th).`} time={"4h"} color={"danger"} />
+                            <Notification content={'Normal notification.'} time={"1d"} color={"light"} />
                         </ListGroup>
                     </Card>
                 </Col>
