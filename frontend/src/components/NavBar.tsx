@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 
 export const NavBar = () => {
     return (
-        <Navbar bg="light mx-1 shadow-sm">
+        <Navbar className="bg-light mx-1 shadow-sm">
             <Container>
                 <Link to="/" className="navbar-brand">
                     q<span className="text-warning">Track</span>

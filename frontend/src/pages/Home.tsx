@@ -5,9 +5,7 @@ import Col from 'react-bootstrap/esm/Col';
 import Container from 'react-bootstrap/esm/Container';
 import ListGroup from 'react-bootstrap/esm/ListGroup';
 import Row from 'react-bootstrap/esm/Row';
-import Stack from 'react-bootstrap/esm/Stack';
-import {FaRegBell, FaRegCompass, FaRegPlusSquare, FaTimes} from 'react-icons/fa';
-import {Link} from 'react-router-dom';
+import {FaRegBell, FaRegCompass, FaRegPlusSquare} from 'react-icons/fa';
 import {Notification} from "../components/Notification";
 
 type Props = {};
@@ -44,9 +42,10 @@ export const Home = (props: Props) => {
                             <span className="align-middle"> Notifications</span>
                         </Card.Header>
                         <ListGroup variant="flush">
-                            <Notification content={'An event "Work" started.'} time={"15m"} color={"warning"} />
-                            <Notification content={`"Chuck's birthday" is in 3 days (March 10th).`} time={"4h"} color={"danger"} />
-                            <Notification content={'Normal notification.'} time={"1d"} color={"light"} />
+                            <Notification content={'An event "Work" started.'} time={"15m"} color={"warning"}/>
+                            <Notification content={`"Chuck's birthday" is in 3 days (March 10th).`} time={"4h"}
+                                          color={"danger"}/>
+                            <Notification content={'Normal notification.'} time={"1d"} color={"light"}/>
                         </ListGroup>
                     </Card>
                 </Col>

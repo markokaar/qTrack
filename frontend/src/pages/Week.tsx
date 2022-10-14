@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import sampleData from '../sampleData.json'
 import {WeekEvent} from "../components/WeekEvent";
 
 type Props = {};

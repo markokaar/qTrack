@@ -6,6 +6,11 @@ body {
     z-index: 10;
 }
 
+.nav {
+    position: relative;
+    z-index: 10;
+}
+
 .week {
     display: grid;
     grid-template-columns: 4rem auto;
@@ -14,6 +19,7 @@ body {
     grid-template-areas:
     ". header"
     "timeContainer main";
+    margin-top: 0.25rem;
 }
 
 .week li {
