@@ -11,7 +11,7 @@ export const NavBar = () => {
     return (
         <Navbar className="bg-light mx-1 shadow-sm">
             <Container>
-                <Link to="/" className="navbar-brand">
+                <Link to="/home" className="navbar-brand">
                     q<span className="text-warning">Track</span>
                 </Link>
 
@@ -27,7 +27,7 @@ export const NavBar = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Link to="/" className="dropdown-item">
+                        <Link to="/home" className="dropdown-item">
                             <FaHome className="align-middle"/>
                             <span className="align-middle"> Home</span>
                         </Link>

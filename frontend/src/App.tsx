@@ -37,7 +37,7 @@ function App() {
                     </>
                 }/>
 
-                <Route path="/" element={<Home/>}/>
+                <Route path="/home" element={<Home/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/settings" element={<Settings/>}/>
                 <Route path="/logout" element={"Coming soon."}/>
