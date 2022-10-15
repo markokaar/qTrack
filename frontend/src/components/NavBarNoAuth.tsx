@@ -31,7 +31,7 @@ export const NavBarNoAuth = (props: Props) => {
             </Dropdown>
 
             <Link to="" className="btn btn-warning">Create Account</Link>
-            <Link to="" className="btn btn-outline-secondary">Log in</Link>
+            <Link to="" className="btn btn-outline-dark">Log in</Link>
         </Stack>
     );
 };

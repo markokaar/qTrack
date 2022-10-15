@@ -10,6 +10,7 @@ import {Settings} from "./pages/Settings";
 import {Profile} from "./pages/Profile";
 import {CalendarNav} from "./components/CalendarNav";
 import {Index} from "./pages/Index";
+import {PagesNav} from "./components/PagesNav";
 
 
 function App() {
@@ -38,11 +39,17 @@ function App() {
                     </>
                 }/>
 
-                <Route path="/" element={<Index/>}/>
+                <Route path="/" element={
+                    <>
+                        <PagesNav/>
+                        <Index/>
+                    </>
+                }/>
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/settings" element={<Settings/>}/>
                 <Route path="/logout" element={"Coming soon."}/>
+                <Route path="*" element={<Index/>}/>
             </Routes>
 
         </BrowserRouter>
