@@ -9,13 +9,14 @@ import {Month} from "./pages/Month";
 import {Settings} from "./pages/Settings";
 import {Profile} from "./pages/Profile";
 import {CalendarNav} from "./components/CalendarNav";
+import {Index} from "./pages/Index";
 
 
 function App() {
 
     return (
         <BrowserRouter>
-            <NavBar/>
+            <NavBar isLogged={false}/>
 
             <Routes>
                 <Route path="/d" element={
@@ -37,6 +38,7 @@ function App() {
                     </>
                 }/>
 
+                <Route path="/" element={<Index/>}/>
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/settings" element={<Settings/>}/>

@@ -11,6 +11,10 @@ body {
     z-index: 2;
 }
 
+.langDropdown .dropdown-toggle::after {
+    display:none;
+}
+
 .week {
     display: grid;
     grid-template-columns: 4rem auto;
