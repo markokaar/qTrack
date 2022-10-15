@@ -19,7 +19,7 @@ export const Index = () => {
                         <Stack gap={3} className="text-center">
                             <h1>qTrack is a time-tracking & calendar application</h1>
                             Create a qTrack account to get lorem ipsum dolor sit amet!
-                            <Link to="" className="btn btn-warning btn-lg w-50 m-auto">
+                            <Link to="" className="btn btn-warning btn-lg w-50 m-auto shadow-sm">
                                 Create a Free Account
                             </Link>
                         </Stack>
@@ -28,7 +28,7 @@ export const Index = () => {
             </Container>
 
             <hr className="mb-0"/>
-            <div className="py-3 text-bg-light">
+            <div className="py-3 text-bg-light shadow-sm">
                 <Container className="py-3">
                     <Row>
                         <Col>
@@ -40,7 +40,7 @@ export const Index = () => {
                                 pulvinar
                                 maximus tincidunt.
                             </p>
-                            <Link to="" className="btn btn-outline-dark btn-sm">Read more</Link>
+                            <Link to="" className="btn btn-outline-dark btn-sm shadow-sm">Read more</Link>
                         </Col>
                         <Col sm={3} className="align-self-center">
                             <FaCalendarAlt size={100}/>
@@ -104,7 +104,7 @@ export const Index = () => {
                                     <li className="list-group-item py-1">5 Notifications</li>
                                 </ul>
                             </Card.Body>
-                            <Link to="" className="btn btn-outline-dark mx-2 mb-2">Register Now</Link>
+                            <Link to="" className="btn btn-outline-dark mx-2 mb-2 shadow-sm">Register Now</Link>
                         </Card>
 
                         <Card className="text-bg-light">
@@ -124,7 +124,7 @@ export const Index = () => {
                                     <small>1 Month free, 4.99 EUR/month after.</small>
                                 </span>
                             </Card.Body>
-                            <Link to="" className="btn btn-warning mx-2 mb-2">1 Month Free</Link>
+                            <Link to="" className="btn btn-warning mx-2 mb-2 shadow-sm">1 Month Free</Link>
                         </Card>
                     </CardGroup>
                 </Row>
@@ -140,8 +140,8 @@ export const Index = () => {
                             non, placerat hendrerit nisi. Quisque facilisis, lorem ac cursus bibendum, lorem nulla
                             hendrerit
                             nulla, molestie auctor orci dolor ut turpis.</p>
-                        <Link to="" className="btn btn-dark me-1">Create business account</Link>
-                        <Link to="" className="btn btn-outline-dark">Contact us</Link>
+                        <Link to="" className="btn btn-dark me-1 shadow-sm">Create a Business Account</Link>
+                        <Link to="" className="btn btn-outline-dark shadow-sm">Contact us</Link>
                     </Col>
                 </Row>
             </Container>

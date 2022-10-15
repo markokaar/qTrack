@@ -14,7 +14,7 @@ export const Home = (props: Props) => {
         <Container fluid className="mt-3">
             <Row>
                 <Col sm={7} className="ps-2 pt-2 pe-0">
-                    <Card border="dark">
+                    <Card border="dark shadow-sm">
                         <Card.Header>
                             <FaRegCompass className="align-middle"/>
                             <span className="align-middle"> Overview</span>
@@ -24,7 +24,7 @@ export const Home = (props: Props) => {
                             Next event: <b>09:00</b> (in 1h 37min).
                         </Card.Body>
                     </Card>
-                    <Card className="mt-2">
+                    <Card className="mt-2 shadow-sm">
                         <Card.Header>
                             <FaRegPlusSquare className="align-middle"/>
                             <span className="align-middle"> Add new event</span>
@@ -36,7 +36,7 @@ export const Home = (props: Props) => {
                 </Col>
 
                 <Col sm={5} className="p-2">
-                    <Card>
+                    <Card className="shadow-sm">
                         <Card.Header>
                             <FaRegBell className="align-middle"/>
                             <span className="align-middle"> Notifications</span>

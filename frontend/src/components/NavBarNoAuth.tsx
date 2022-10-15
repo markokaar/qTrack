@@ -30,8 +30,8 @@ export const NavBarNoAuth = (props: Props) => {
                 </Dropdown.Menu>
             </Dropdown>
 
-            <Link to="" className="btn btn-warning">Create Account</Link>
-            <Link to="" className="btn btn-outline-dark">Log in</Link>
+            <Link to="" className="btn btn-warning shadow-sm">Create Account</Link>
+            <Link to="" className="btn btn-outline-dark shadow-sm">Log in</Link>
         </Stack>
     );
 };

@@ -9,18 +9,18 @@ type Props = {};
 export const NavBarAuth = (props: Props) => {
     return (
         <>
-            <ButtonGroup aria-label="Time picker">
+            <ButtonGroup aria-label="Time picker" className="shadow-sm">
                 <Link to="/d" className="btn btn-outline-dark">Day</Link>
                 <Link to="/w" className="btn btn-dark">Week</Link>
                 <Link to="/m" className="btn btn-outline-dark">Month</Link>
             </ButtonGroup>
 
             <Dropdown align={"end"}>
-                <Dropdown.Toggle variant="outline-dark" id="menu-dropdown">
+                <Dropdown.Toggle variant="outline-dark" id="menu-dropdown" className="shadow-sm">
                     <FaUser size={24}/>
                 </Dropdown.Toggle>
 
-                <Dropdown.Menu>
+                <Dropdown.Menu className="shadow-sm">
                     <Link to="/home" className="dropdown-item">
                         <FaHome className="align-middle"/>
                         <span className="align-middle"> Home</span>
