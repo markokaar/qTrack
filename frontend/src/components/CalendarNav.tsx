@@ -3,6 +3,7 @@ import * as React from 'react';
 import Nav from 'react-bootstrap/esm/Nav';
 import {FaCalendarDay, FaChevronLeft, FaChevronRight, FaPlusSquare} from 'react-icons/fa';
 import {Link} from 'react-router-dom';
+import {NewEvent} from './NewEvent';
 
 type Props = {
     selectedDate: string
@@ -32,14 +33,9 @@ export const CalendarNav = (props: Props) => {
                 </Nav.Link>
             </Nav.Item>
 
-
             <Nav.Item className="ms-auto border-start">
-                <Link to="" className="nav-link link-dark">
-                    <FaPlusSquare className="align-middle"/>
-                    <span className="align-middle"> New event</span>
-                </Link>
+                <NewEvent/>
             </Nav.Item>
-
         </Nav>
     );
 };

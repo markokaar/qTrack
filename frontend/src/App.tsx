@@ -22,7 +22,7 @@ function App() {
             <Routes>
                 <Route path="/d" element={
                     <>
-                        <CalendarNav selectedDate={'Oct 15, 2022'}/>
+                        <CalendarNav selectedDate={'Oct 16, 2022'}/>
                         <Day/>
                     </>
                 }/>
