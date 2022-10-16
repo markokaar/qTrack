@@ -11,7 +11,7 @@ type Props = {
     eventContent: string
 };
 
-export const WeekEvent = (props: Props) => {
+export const GridEvent = (props: Props) => {
     return (
         <div className="eventBox" style={{
             height: (props.eventLength / 15) + "rem",

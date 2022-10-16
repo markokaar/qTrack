@@ -17,7 +17,7 @@ function App() {
 
     return (
         <BrowserRouter>
-            <NavBar isLogged={false}/>
+            <NavBar isLogged={true}/>
 
             <Routes>
                 <Route path="/d" element={

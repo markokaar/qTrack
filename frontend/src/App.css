@@ -42,6 +42,13 @@ body {
     grid-template-columns: repeat(7, 1fr);
 }
 
+.selectedDay,
+.selectedDayNumber {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
 .header {
     grid-area: header;
 }
@@ -89,20 +96,23 @@ body {
 
 .eventsContainer {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(96, 1fr);
     grid-area: main;
     position: relative;
 }
 
+.eventsContainerWeek {
+    grid-template-columns: repeat(7, 1fr);
+}
+
 .eventBox {
     display: grid;
     position: absolute;
-    border-radius: 3px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
     z-index: 5;
-    color: white;
     grid-auto-flow: column;
-    padding: 0 0.2rem;
+    padding: 0.2rem 0.2rem;
     font-size: 0.9rem;
     width: 100%;
 }

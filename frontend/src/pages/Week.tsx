@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import {WeekEvent} from "../components/WeekEvent";
+import {GridEvent} from '../components/GridEvent';
 
 type Props = {};
 export const Week = (props: Props) => {
@@ -70,19 +70,27 @@ export const Week = (props: Props) => {
                     </ul>
                 </div>
 
-                <div className="eventsContainer">
-                    <WeekEvent day={3} timeStart={700} eventLength={120}
-                               eventColor={'darkslategray'}
+                <div className="eventsContainer eventsContainerWeek">
+                    <GridEvent day={3} timeStart={700} eventLength={120}
+                               eventColor={'lightgreen'}
                                eventContent={'Example event.'}/>
-                    <WeekEvent day={3} timeStart={925} eventLength={180}
-                               eventColor={'navy'}
+                    <GridEvent day={3} timeStart={925} eventLength={180}
+                               eventColor={'lightpink'}
                                eventContent={'Lorem impsum'}/>
-                    <WeekEvent day={4} timeStart={625} eventLength={90}
-                               eventColor={'darkgoldenrod'}
+                    <GridEvent day={4} timeStart={625} eventLength={90}
+                               eventColor={'gold'}
                                eventContent={'Another event.'}/>
-                    <WeekEvent day={1} timeStart={900} eventLength={540}
-                               eventColor={'darkgreen'}
+                    <GridEvent day={1} timeStart={900} eventLength={540}
+                               eventColor={'lightblue'}
                                eventContent={'Work.'}/>
+
+                    <GridEvent day={7} timeStart={700} eventLength={120}
+                               eventColor={'#F3C794'}
+                               eventContent={'Pancakes'}/>
+                    <GridEvent day={7} timeStart={900} eventLength={180}
+                               eventColor={'lightblue'}
+                               eventContent={'Work'}/>
+
                 </div>
             </div>
 
