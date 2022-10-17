@@ -20,11 +20,17 @@ A time tracking & calendar application.
 <img src="week_view.png" width="300px" alt="Week View">
 </kbd>
 
-### New Event & Home View
+### Month view & Add new event
 
 <kbd>
-<img src="new_event_view.png" width="300px" alt="Add Event View">
+<img src="month_view.png" width="300px" alt="Month View">
 </kbd>
+<kbd>
+<img src="new_event_view.png" width="300px" alt="Add New Event View">
+</kbd>
+
+### Home View
+
 <kbd>
 <img src="home_view.png" width="300px" alt="Home View">
 </kbd>
