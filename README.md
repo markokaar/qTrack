@@ -11,7 +11,7 @@ A time tracking & calendar application.
 <img src="index_view2.png" width="300px" alt="Index View 2">
 </kbd>
 
-### Day View & Week View
+### Day view & Week view
 
 <kbd>
 <img src="day_view.png" width="300px" alt="Day View">
@@ -29,8 +29,11 @@ A time tracking & calendar application.
 <img src="new_event_view.png" width="300px" alt="Add New Event View">
 </kbd>
 
-### Settings view
+### Account view & Settings view
 
+<kbd>
+<img src="account_view.png" width="300px" alt="Account View">
+</kbd>
 <kbd>
 <img src="settings_view.png" width="300px" alt="Settings View">
 </kbd>

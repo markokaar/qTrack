@@ -47,6 +47,7 @@ export const Settings = (props: Props) => {
                                 Add new
                             </Button>
                         </Card.Header>
+
                         <ListGroup variant="flush">
                             <ListGroup.Item style={{borderLeft: "10px solid orange"}}>
                                 <span className="align-middle"> Default</span>
