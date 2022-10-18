@@ -29,6 +29,13 @@ A time tracking & calendar application.
 <img src="new_event_view.png" width="300px" alt="Add New Event View">
 </kbd>
 
+### Settings view
+
+<kbd>
+<img src="settings_view.png" width="300px" alt="Settings View">
+</kbd>
+
+
 ### Home View
 
 <kbd>
