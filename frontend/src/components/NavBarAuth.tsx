@@ -25,9 +25,9 @@ export const NavBarAuth = (props: Props) => {
                         <FaHome className="align-middle"/>
                         <span className="align-middle"> Home</span>
                     </Link>
-                    <Link to="/profile" className="dropdown-item">
+                    <Link to="/account" className="dropdown-item">
                         <FaUserEdit className="align-middle"/>
-                        <span className="align-middle"> Profile</span>
+                        <span className="align-middle"> Account</span>
                     </Link>
                     <Link to="/settings" className="dropdown-item">
                         <FaCog className="align-middle"/>

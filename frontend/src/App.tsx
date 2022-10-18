@@ -7,7 +7,7 @@ import {Week} from "./pages/Week";
 import {Day} from "./pages/Day";
 import {Month} from "./pages/Month";
 import {Settings} from "./pages/Settings";
-import {Profile} from "./pages/Profile";
+import {Account} from "./pages/Account";
 import {CalendarNav} from "./components/CalendarNav";
 import {Index} from "./pages/Index";
 import {PagesNav} from "./components/PagesNav";
@@ -46,7 +46,7 @@ function App() {
                     </>
                 }/>
                 <Route path="/home" element={<Home/>}/>
-                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/account" element={<Account/>}/>
                 <Route path="/settings" element={<Settings/>}/>
                 <Route path="/logout" element={"Coming soon."}/>
                 <Route path="*" element={<Index/>}/>

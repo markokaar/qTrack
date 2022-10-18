@@ -3,10 +3,10 @@ import * as React from 'react';
 type Props = {
 
 };
-export const Profile = (props: Props) => {
+export const Account = (props: Props) => {
     return (
             <>
-            Profile view
+            Account view
             </>
             );
 };
