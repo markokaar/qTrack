@@ -3,18 +3,20 @@ import * as React from 'react';
 import ButtonGroup from 'react-bootstrap/esm/ButtonGroup';
 import Dropdown from 'react-bootstrap/esm/Dropdown';
 import {FaHome, FaUser, FaUserEdit, FaCog} from 'react-icons/fa';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 type Props = {
     handleLogin: () => void;
 };
 export const NavBarAuth = (props: Props) => {
+    const location = useLocation().pathname;
+
     return (
         <>
             <ButtonGroup aria-label="Time picker" className="shadow-sm">
-                <Link to="/d" className="btn btn-outline-dark">Day</Link>
-                <Link to="/w" className="btn btn-dark">Week</Link>
-                <Link to="/m" className="btn btn-outline-dark">Month</Link>
+                <Link to="/d" className={`btn btn-${location === "/d" ? "dark" : "outline-dark"}`}>Day</Link>
+                <Link to="/w" className={`btn btn-${location === "/w" ? "dark" : "outline-dark"}`}>Week</Link>
+                <Link to="/m" className={`btn btn-${location === "/m" ? "dark" : "outline-dark"}`}>Month</Link>
             </ButtonGroup>
 
             <Dropdown align={"end"}>
