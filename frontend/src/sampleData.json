@@ -1,26 +1,23 @@
 [
   {
     "id": 1,
-    "day": 1,
-    "timeStart": 900,
-    "eventLength": 540,
-    "eventColor": "darkslategray",
-    "eventContent": "Work"
+    "eventStart": "2022-10-16 07:00:00",
+    "eventEnd": "2022-10-16 09:00:00",
+    "eventColor": "#F3C794",
+    "eventContent": "Pancakes"
   },
   {
     "id": 2,
-    "day": 3,
-    "timeStart": 700,
-    "eventLength": 120,
-    "eventColor": "darkgoldenrod",
-    "eventContent": "Example event one."
+    "eventStart": "2022-10-10 09:00:00",
+    "eventEnd": "2022-10-10 12:00:00",
+    "eventColor": "lightblue",
+    "eventContent": "Work"
   },
   {
     "id": 3,
-    "day": 4,
-    "timeStart": 625,
-    "eventLength": 90,
-    "eventColor": "darkgreen",
-    "eventContent": "One more event"
+    "eventStart": "2022-10-15 08:45:00",
+    "eventEnd": "2022-10-15 11:15:00",
+    "eventColor": "gold",
+    "eventContent": "Event with odd times"
   }
 ]

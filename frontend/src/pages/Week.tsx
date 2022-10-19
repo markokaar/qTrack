@@ -1,9 +1,12 @@
 // @flow
 import * as React from 'react';
 import {GridEvent} from '../components/GridEvent';
+import events from '../sampleData.json'
+import {stringToDate} from "../utils/stringToDate";
 
 type Props = {};
 export const Week = (props: Props) => {
+
     return (
         <>
             <div className="week">
@@ -71,26 +74,15 @@ export const Week = (props: Props) => {
                 </div>
 
                 <div className="eventsContainer eventsContainerWeek">
-                    <GridEvent day={3} timeStart={700} eventLength={120}
-                               eventColor={'lightgreen'}
-                               eventContent={'Example event.'}/>
-                    <GridEvent day={3} timeStart={925} eventLength={180}
-                               eventColor={'lightpink'}
-                               eventContent={'Lorem impsum'}/>
-                    <GridEvent day={4} timeStart={625} eventLength={90}
-                               eventColor={'gold'}
-                               eventContent={'Another event.'}/>
-                    <GridEvent day={1} timeStart={900} eventLength={540}
-                               eventColor={'lightblue'}
-                               eventContent={'Work.'}/>
-
-                    <GridEvent day={7} timeStart={700} eventLength={120}
-                               eventColor={'#F3C794'}
-                               eventContent={'Pancakes'}/>
-                    <GridEvent day={7} timeStart={900} eventLength={180}
-                               eventColor={'lightblue'}
-                               eventContent={'Work'}/>
-
+                    {events.map((event) => {
+                        return (
+                            <GridEvent key={event.id}
+                                       eventStart={stringToDate(event.eventStart)}
+                                       eventEnd={stringToDate(event.eventEnd)}
+                                       eventColor={event.eventColor}
+                                       eventContent={event.eventContent}/>
+                        )
+                    })}
                 </div>
             </div>
 
