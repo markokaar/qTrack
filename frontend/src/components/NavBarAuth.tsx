@@ -5,7 +5,9 @@ import Dropdown from 'react-bootstrap/esm/Dropdown';
 import {FaHome, FaUser, FaUserEdit, FaCog} from 'react-icons/fa';
 import {Link} from 'react-router-dom';
 
-type Props = {};
+type Props = {
+    handleLogin: () => void;
+};
 export const NavBarAuth = (props: Props) => {
     return (
         <>
@@ -34,7 +36,7 @@ export const NavBarAuth = (props: Props) => {
                         <span className="align-middle"> Settings</span>
                     </Link>
                     <Dropdown.Divider/>
-                    <Link to="/logout" className="dropdown-item">Log out</Link>
+                    <Link to="/" className="dropdown-item" onClick={props.handleLogin}>Log out</Link>
                 </Dropdown.Menu>
             </Dropdown>
         </>

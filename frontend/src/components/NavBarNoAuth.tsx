@@ -5,7 +5,9 @@ import Stack from 'react-bootstrap/esm/Stack';
 import {FaGlobe} from 'react-icons/fa';
 import {Link} from 'react-router-dom';
 
-type Props = {};
+type Props = {
+    handleLogin: () => void;
+};
 export const NavBarNoAuth = (props: Props) => {
     return (
         <Stack direction="horizontal" gap={1}>
@@ -31,7 +33,7 @@ export const NavBarNoAuth = (props: Props) => {
             </Dropdown>
 
             <Link to="" className="btn btn-warning shadow-sm">Create Account</Link>
-            <Link to="" className="btn btn-outline-dark shadow-sm">Log in</Link>
+            <Link to="/w" className="btn btn-outline-dark shadow-sm" onClick={props.handleLogin}>Log in</Link>
         </Stack>
     );
 };

@@ -11,13 +11,19 @@ import {Account} from "./pages/Account";
 import {CalendarNav} from "./components/CalendarNav";
 import {Index} from "./pages/Index";
 import {PagesNav} from "./components/PagesNav";
+import {useState} from "react";
 
 
 function App() {
+    const [isLogged, setIsLogged] = useState<boolean>(false);
+
+    const handleLogin = () => {
+        setIsLogged((previous) => !previous);
+    }
 
     return (
         <BrowserRouter>
-            <NavBar isLogged={true}/>
+            <NavBar isLogged={isLogged} handleLogin={handleLogin}/>
 
             <Routes>
                 <Route path="/d" element={
@@ -48,7 +54,7 @@ function App() {
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/account" element={<Account/>}/>
                 <Route path="/settings" element={<Settings/>}/>
-                <Route path="/logout" element={"Coming soon."}/>
+                {/* <Route path="/logout" element={"Coming soon."}/> */}
                 <Route path="*" element={<Index/>}/>
             </Routes>
 

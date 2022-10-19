@@ -4,10 +4,11 @@ import Container from 'react-bootstrap/esm/Container';
 import Navbar from 'react-bootstrap/esm/Navbar';
 import {Link} from 'react-router-dom';
 import {NavBarAuth} from "./NavBarAuth";
-import { NavBarNoAuth } from './NavBarNoAuth';
+import {NavBarNoAuth} from './NavBarNoAuth';
 
 type Props = {
-    isLogged: boolean
+    isLogged: boolean;
+    handleLogin: () => void;
 }
 export const NavBar = (props: Props) => {
     return (
@@ -17,8 +18,8 @@ export const NavBar = (props: Props) => {
                     q<span className="text-warning">Track</span>
                 </Link>
 
-                {props.isLogged && <NavBarAuth/>}
-                {!props.isLogged && <NavBarNoAuth/>}
+                {props.isLogged && <NavBarAuth handleLogin={props.handleLogin} />}
+                {!props.isLogged && <NavBarNoAuth handleLogin={props.handleLogin}/>}
 
             </Container>
         </Navbar>
