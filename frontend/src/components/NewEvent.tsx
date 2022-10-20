@@ -1,24 +1,46 @@
 // @flow
-import * as React from 'react';
-import {useState} from 'react';
-import Button from 'react-bootstrap/esm/Button';
-import Col from 'react-bootstrap/esm/Col';
-import Form from 'react-bootstrap/esm/Form';
-import InputGroup from 'react-bootstrap/esm/InputGroup';
-import Modal from 'react-bootstrap/esm/Modal';
-import Row from 'react-bootstrap/esm/Row';
-import {FaCalendarAlt, FaCalendarDay, FaClock, FaPlusSquare, FaSyncAlt} from 'react-icons/fa';
+import * as React from "react";
+import {useState} from "react";
+import Button from "react-bootstrap/esm/Button";
+import Col from "react-bootstrap/esm/Col";
+import Form from "react-bootstrap/esm/Form";
+import InputGroup from "react-bootstrap/esm/InputGroup";
+import Modal from "react-bootstrap/esm/Modal";
+import Row from "react-bootstrap/esm/Row";
+import {
+    FaCalendarAlt,
+    FaCalendarDay,
+    FaPlusSquare,
+    FaSyncAlt,
+} from "react-icons/fa";
+
+import DatePicker, {registerLocale} from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import en from "date-fns/locale/en-GB";
 
 type Props = {};
 export const NewEvent = (props: Props) => {
+    const locale = "en-GB";
+    registerLocale(locale, en);
+
     const [show, setShow] = useState(false);
+    const [allDay, setAllDay] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const [startDate, setStartDate] = useState(new Date(2022, 9, 20));
+    const [startTime, setStartTime] = useState(new Date(2022, 9, 20, 9));
+
+    const [endDate, setEndDate] = useState(new Date(2022, 9, 20));
+    const [endTime, setEndTime] = useState(new Date(2022, 9, 20, 10));
+
     return (
         <>
-            <Button className="btn btn-light rounded-0 nav-link link-dark" onClick={handleShow}>
+            <Button
+                className="btn btn-light rounded-0 nav-link link-dark"
+                onClick={handleShow}
+            >
                 <FaPlusSquare className="align-middle"/>
                 <span className="align-middle"> New event</span>
             </Button>
@@ -32,41 +54,86 @@ export const NewEvent = (props: Props) => {
                     <Form>
                         <Form.Group className="mb-3" controlId="eventTitle">
                             <Form.Label className="mb-1">Event title</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Add title"
-                                autoFocus
-                            />
+                            <Form.Control type="text" placeholder="Add title" autoFocus/>
                         </Form.Group>
 
-                        <Row className="mb-0">
-                            <Col xs={8}>
-                                <InputGroup className="mb-1">
-                                    <InputGroup.Text id="startDate"><FaCalendarDay/></InputGroup.Text>
-                                    <Form.Control placeholder="Start date" defaultValue="Oct 15, 2022"/>
+                        <Row className="mb-1">
+                            <Col>
+                                <InputGroup>
+                                    <InputGroup.Text id="startDate">
+                                        <FaCalendarDay/>
+                                    </InputGroup.Text>
+                                    <div className="d-flex flex-fill">
+                                        <DatePicker
+                                            className="form-control rounded-0 rounded-end"
+                                            locale={locale}
+                                            dateFormat="MMM dd, yyyy"
+                                            selected={startDate}
+                                            onChange={(date) => date ? setStartDate(date) : setStartDate(new Date())}
+                                            selectsStart
+                                            startDate={startDate}
+                                            endDate={endDate}
+                                            showWeekNumbers
+                                        />
+                                    </div>
                                 </InputGroup>
                             </Col>
-                            <Col xs={4}>
-                                <InputGroup className="mb-1">
-                                    <InputGroup.Text id="startTime"><FaClock/></InputGroup.Text>
-                                    <Form.Control placeholder="Start time" defaultValue="09:00"/>
-                                </InputGroup>
-                            </Col>
+                            {
+                                !allDay && <Col xs={4}>
+                                    <DatePicker
+                                        className="form-control"
+                                        locale={locale}
+                                        dateFormat="HH:mm"
+                                        selected={startTime}
+                                        onChange={(time) => time ? setStartTime(time) : setStartTime(new Date())}
+                                        showTimeSelect
+                                        showTimeSelectOnly
+                                        timeIntervals={15}
+                                        timeCaption="Time"
+                                        disabled={allDay}
+                                    />
+                                </Col>
+                            }
                         </Row>
 
                         <Row className="mb-1">
-                            <Col xs={8}>
+                            <Col>
                                 <InputGroup>
-                                    <InputGroup.Text id="endDate"><FaCalendarDay/></InputGroup.Text>
-                                    <Form.Control placeholder="Start date" defaultValue="Oct 15, 2022"/>
+                                    <InputGroup.Text id="endDate">
+                                        <FaCalendarDay/>
+                                    </InputGroup.Text>
+                                    <div className="d-flex flex-fill">
+                                        <DatePicker
+                                            className="form-control rounded-0 rounded-end"
+                                            locale={locale}
+                                            dateFormat="MMM dd, yyyy"
+                                            selected={endDate}
+                                            onChange={(date) => date ? setEndDate(date) : setEndDate(new Date())}
+                                            selectsEnd
+                                            startDate={startDate}
+                                            endDate={endDate}
+                                            minDate={startDate}
+                                            showWeekNumbers
+                                        />
+                                    </div>
                                 </InputGroup>
                             </Col>
-                            <Col xs={4}>
-                                <InputGroup>
-                                    <InputGroup.Text id="endTime"><FaClock/></InputGroup.Text>
-                                    <Form.Control placeholder="Start time" defaultValue="10:00"/>
-                                </InputGroup>
-                            </Col>
+                            {
+                                !allDay && <Col xs={4}>
+                                    <DatePicker
+                                        className="form-control"
+                                        locale={locale}
+                                        dateFormat="HH:mm"
+                                        selected={endTime}
+                                        onChange={(time) => time ? setEndTime(time) : setEndTime(new Date())}
+                                        showTimeSelect
+                                        showTimeSelectOnly
+                                        timeIntervals={15}
+                                        timeCaption="Time"
+                                        disabled={allDay}
+                                    />
+                                </Col>
+                            }
                         </Row>
 
                         <Row className="mb-3">
@@ -82,12 +149,15 @@ export const NewEvent = (props: Props) => {
                                     type="switch"
                                     id="allDaySwitch"
                                     label="All day"
+                                    onClick={() => setAllDay((old) => !old)}
                                 />
                             </Col>
                         </Row>
 
                         <InputGroup className="mb-1">
-                            <InputGroup.Text id="eventRepeat"><FaSyncAlt/></InputGroup.Text>
+                            <InputGroup.Text id="eventRepeat">
+                                <FaSyncAlt/>
+                            </InputGroup.Text>
                             <Form.Select aria-label="Event repeats">
                                 <option value="1">Does not repeat</option>
                                 <option value="2">Every day</option>
@@ -99,7 +169,9 @@ export const NewEvent = (props: Props) => {
                         </InputGroup>
 
                         <InputGroup className="mb-1">
-                            <InputGroup.Text id="eventCalendar"><FaCalendarAlt/></InputGroup.Text>
+                            <InputGroup.Text id="eventCalendar">
+                                <FaCalendarAlt/>
+                            </InputGroup.Text>
                             <Form.Select aria-label="Calendar type">
                                 <option value="1">Default calendar</option>
                                 <option value="2">Work</option>
@@ -115,10 +187,18 @@ export const NewEvent = (props: Props) => {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="outline-dark" onClick={handleClose} className="shadow-sm">
+                    <Button
+                        variant="outline-dark"
+                        onClick={handleClose}
+                        className="shadow-sm"
+                    >
                         Close
                     </Button>
-                    <Button variant="warning" onClick={handleClose} className="shadow-sm">
+                    <Button
+                        variant="warning"
+                        onClick={handleClose}
+                        className="shadow-sm"
+                    >
                         Save Changes
                     </Button>
                 </Modal.Footer>
