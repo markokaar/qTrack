@@ -12,14 +12,17 @@ import {CalendarNav} from "./components/CalendarNav";
 import {Index} from "./pages/Index";
 import {PagesNav} from "./components/PagesNav";
 import {useState} from "react";
-
+import {IEvent} from "./IEvent";
+import sampleEvents from './sampleData.json'
 
 function App() {
+    // Auth
     const [isLogged, setIsLogged] = useState<boolean>(false);
+    const handleLogin = () => setIsLogged((previous) => !previous);
 
-    const handleLogin = () => {
-        setIsLogged((previous) => !previous);
-    }
+    // Events
+    const [events, setEvents] = useState<IEvent[]>(sampleEvents);
+    const addEvent = (event: IEvent) => setEvents(current => [...current, event]);
 
     return (
         <BrowserRouter>
@@ -28,19 +31,22 @@ function App() {
             <Routes>
                 <Route path="/d" element={
                     <>
-                        <CalendarNav selectedDate={'Oct 16, 2022'}/>
+                        <CalendarNav selectedDate={'Oct 16, 2022'}
+                                     handleAddEvent={addEvent}/>
                         <Day/>
                     </>
                 }/>
                 <Route path="/w" element={
                     <>
-                        <CalendarNav selectedDate={'10 - 16 Oct 2022'}/>
-                        <Week/>
+                        <CalendarNav selectedDate={'10 - 16 Oct 2022'}
+                                     handleAddEvent={addEvent}/>
+                        <Week events={events}/>
                     </>
                 }/>
                 <Route path="/m" element={
                     <>
-                        <CalendarNav selectedDate={'Oct 2022'}/>
+                        <CalendarNav selectedDate={'Oct 2022'}
+                                     handleAddEvent={addEvent}/>
                         <Month/>
                     </>
                 }/>

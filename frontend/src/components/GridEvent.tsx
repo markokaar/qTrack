@@ -7,7 +7,7 @@ type Props = {
     eventStart: Date,
     eventEnd: Date,
     eventColor: string,
-    eventContent: string
+    eventTitle: string
 };
 
 export const GridEvent = (props: Props) => {
@@ -22,7 +22,7 @@ export const GridEvent = (props: Props) => {
             gridColumn: startDay + "/" + (startDay + 1),
             backgroundColor: props.eventColor
         }}>
-            <span>{props.eventContent}</span>
+            <span>{props.eventTitle}</span>
         </div>
     );
 };

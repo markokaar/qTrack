@@ -1,10 +1,12 @@
 // @flow
 import * as React from 'react';
 import {GridEvent} from '../components/GridEvent';
-import events from '../sampleData.json'
 import {stringToDate} from "../utils/stringToDate";
+import {IEvent} from "../IEvent";
 
-type Props = {};
+type Props = {
+    events: IEvent[]
+};
 export const Week = (props: Props) => {
 
     return (
@@ -74,13 +76,13 @@ export const Week = (props: Props) => {
                 </div>
 
                 <div className="eventsContainer eventsContainerWeek">
-                    {events.map((event) => {
+                    {props.events.map((event) => {
                         return (
                             <GridEvent key={event.id}
-                                       eventStart={stringToDate(event.eventStart)}
-                                       eventEnd={stringToDate(event.eventEnd)}
-                                       eventColor={event.eventColor}
-                                       eventContent={event.eventContent}/>
+                                       eventStart={stringToDate(event.start)}
+                                       eventEnd={stringToDate(event.end)}
+                                       eventColor={event.calendarGroup}
+                                       eventTitle={event.title}/>
                         )
                     })}
                 </div>

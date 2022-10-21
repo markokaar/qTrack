@@ -17,23 +17,46 @@ import {
 import DatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import en from "date-fns/locale/en-GB";
+import {IEvent} from "../IEvent";
 
-type Props = {};
+type Props = {
+    handleAddEvent: (event: IEvent) => void,
+};
 export const NewEvent = (props: Props) => {
+    // Locale
     const locale = "en-GB";
     registerLocale(locale, en);
 
+    // Modal
     const [show, setShow] = useState(false);
-    const [allDay, setAllDay] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [startDate, setStartDate] = useState(new Date(2022, 9, 20));
-    const [startTime, setStartTime] = useState(new Date(2022, 9, 20, 9));
+    // Event
+    const [title, setTitle] = useState<string>("");
+    const [startDate, setStartDate] = useState(new Date(2022, 9, 20, 9, 0));
+    const [endDate, setEndDate] = useState(new Date(2022, 9, 20, 10, 0));
+    const [notification, setNotification] = useState(false);
+    const [allDay, setAllDay] = useState(false);
+    const [repeat, setRepeat] = useState(0);
+    const [calendarGroup, setCalendarGroup] = useState("lightblue");
+    const [description, setDescription] = useState("");
 
-    const [endDate, setEndDate] = useState(new Date(2022, 9, 20));
-    const [endTime, setEndTime] = useState(new Date(2022, 9, 20, 10));
+    // Currently correct date format is "2022-10-16 07:00:00"
+    // TODO id random is temporary.
+    const addEvent = () => {
+        props.handleAddEvent({
+            id: Math.floor(Math.random() * 1000),
+            title: title,
+            start: startDate.toISOString().replace("T", " ").replace(".000Z", ""),
+            end: endDate.toISOString().replace("T", " ").replace(".000Z", ""),
+            notification: notification,
+            repeat: repeat,
+            calendarGroup: calendarGroup,
+            description: description
+        });
+        setShow(false)
+    }
 
     return (
         <>
@@ -54,7 +77,13 @@ export const NewEvent = (props: Props) => {
                     <Form>
                         <Form.Group className="mb-3" controlId="eventTitle">
                             <Form.Label className="mb-1">Event title</Form.Label>
-                            <Form.Control type="text" placeholder="Add title" autoFocus/>
+                            <Form.Control
+                                type="text"
+                                placeholder="Add title"
+                                autoFocus
+                                onChange={e => setTitle(e.target.value)}
+                                value={title}
+                            />
                         </Form.Group>
 
                         <Row className="mb-1">
@@ -70,7 +99,7 @@ export const NewEvent = (props: Props) => {
                                             locale={locale}
                                             dateFormat="MMM dd, yyyy"
                                             selected={startDate}
-                                            onChange={(date) => date ? setStartDate(date) : setStartDate(new Date())}
+                                            onChange={date => date ? setStartDate(date) : setStartDate(new Date())}
                                             selectsStart
                                             startDate={startDate}
                                             endDate={endDate}
@@ -85,8 +114,8 @@ export const NewEvent = (props: Props) => {
                                         className="form-control"
                                         locale={locale}
                                         dateFormat="HH:mm"
-                                        selected={startTime}
-                                        onChange={(time) => time ? setStartTime(time) : setStartTime(new Date())}
+                                        selected={startDate}
+                                        onChange={time => time ? setStartDate(time) : setStartDate(new Date())}
                                         showTimeSelect
                                         showTimeSelectOnly
                                         timeIntervals={15}
@@ -110,7 +139,7 @@ export const NewEvent = (props: Props) => {
                                             locale={locale}
                                             dateFormat="MMM dd, yyyy"
                                             selected={endDate}
-                                            onChange={(date) => date ? setEndDate(date) : setEndDate(new Date())}
+                                            onChange={date => date ? setEndDate(date) : setEndDate(new Date())}
                                             selectsEnd
                                             startDate={startDate}
                                             endDate={endDate}
@@ -126,8 +155,8 @@ export const NewEvent = (props: Props) => {
                                         className="form-control"
                                         locale={locale}
                                         dateFormat="HH:mm"
-                                        selected={endTime}
-                                        onChange={(time) => time ? setEndTime(time) : setEndTime(new Date())}
+                                        selected={endDate}
+                                        onChange={time => time ? setEndDate(time) : setEndDate(new Date())}
                                         showTimeSelect
                                         showTimeSelectOnly
                                         timeIntervals={15}
@@ -144,6 +173,7 @@ export const NewEvent = (props: Props) => {
                                     type="switch"
                                     id="notificationSwitch"
                                     label="Add notification"
+                                    onClick={() => setNotification(old => !old)}
                                 />
                             </Col>
                             <Col xs={4}>
@@ -151,7 +181,7 @@ export const NewEvent = (props: Props) => {
                                     type="switch"
                                     id="allDaySwitch"
                                     label="All day"
-                                    onClick={() => setAllDay((old) => !old)}
+                                    onClick={() => setAllDay(old => !old)}
                                 />
                             </Col>
                         </Row>
@@ -160,13 +190,16 @@ export const NewEvent = (props: Props) => {
                             <InputGroup.Text id="eventRepeat">
                                 <FaSyncAlt/>
                             </InputGroup.Text>
-                            <Form.Select aria-label="Event repeats">
-                                <option value="1">Does not repeat</option>
-                                <option value="2">Every day</option>
-                                <option value="3">Every week</option>
-                                <option value="4">Every month</option>
-                                <option value="5">Every year</option>
-                                <option value="6">Custom</option>
+                            <Form.Select
+                                aria-label="Event repeats"
+                                onChange={e => setRepeat(parseInt(e.target.value, 10))}
+                            >
+                                <option value="0">Does not repeat</option>
+                                <option value="1">Every day</option>
+                                <option value="2">Every week</option>
+                                <option value="3">Every month</option>
+                                <option value="4">Every year</option>
+                                <option value="5">Custom</option>
                             </Form.Select>
                         </InputGroup>
 
@@ -174,7 +207,10 @@ export const NewEvent = (props: Props) => {
                             <InputGroup.Text id="eventCalendar">
                                 <FaCalendarAlt/>
                             </InputGroup.Text>
-                            <Form.Select aria-label="Calendar type">
+                            <Form.Select
+                                aria-label="Calendar type"
+                                onChange={e => setCalendarGroup(e.target.value)}
+                            >
                                 <option value="1">Default calendar</option>
                                 <option value="2">Work</option>
                                 <option value="3">Important</option>
@@ -183,7 +219,12 @@ export const NewEvent = (props: Props) => {
 
                         <Form.Group controlId="eventDescription">
                             <Form.Label className="my-1">Add description</Form.Label>
-                            <Form.Control as="textarea" rows={3}/>
+                            <Form.Control
+                                as="textarea"
+                                rows={3}
+                                onChange={e => setDescription(e.target.value)}
+                                value={description}
+                            />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -198,7 +239,7 @@ export const NewEvent = (props: Props) => {
                     </Button>
                     <Button
                         variant="warning"
-                        onClick={handleClose}
+                        onClick={addEvent}
                         className="shadow-sm"
                     >
                         Save Changes

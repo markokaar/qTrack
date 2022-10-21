@@ -1,23 +1,32 @@
 [
   {
     "id": 1,
-    "eventStart": "2022-10-16 07:00:00",
-    "eventEnd": "2022-10-16 09:00:00",
-    "eventColor": "#F3C794",
-    "eventContent": "Pancakes"
+    "title": "Pancakes",
+    "start": "2022-10-16 07:00:00",
+    "end": "2022-10-16 09:00:00",
+    "notification": false,
+    "repeat": 0,
+    "calendarGroup": "#F3C794",
+    "description": "This is the description."
   },
   {
     "id": 2,
-    "eventStart": "2022-10-10 09:00:00",
-    "eventEnd": "2022-10-10 12:00:00",
-    "eventColor": "lightblue",
-    "eventContent": "Work"
+    "title": "Work",
+    "start": "2022-10-10 09:00:00",
+    "end": "2022-10-10 12:00:00",
+    "notification": false,
+    "repeat": 0,
+    "calendarGroup": "lightblue",
+    "description": "This is the description."
   },
   {
     "id": 3,
-    "eventStart": "2022-10-15 08:45:00",
-    "eventEnd": "2022-10-15 11:15:00",
-    "eventColor": "gold",
-    "eventContent": "Event with odd times"
+    "title": "Event with odd times",
+    "start": "2022-10-15 08:45:00",
+    "end": "2022-10-15 11:15:00",
+    "notification": false,
+    "repeat": 0,
+    "calendarGroup": "gold",
+    "description": "This is the description."
   }
 ]

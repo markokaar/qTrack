@@ -59,7 +59,7 @@ export const Day = (props: Props) => {
 
                 <div className="eventsContainer">
                     {events.map((event) => {
-                        const eventStart = stringToDate(event.eventStart);
+                        const eventStart = stringToDate(event.start);
 
                         // TODO: Remove '+1' from eventStart.getDate() if stringToDate.ts (and week view) is fixed.
                         return (
@@ -68,9 +68,9 @@ export const Day = (props: Props) => {
                             eventStart.getDate() + 1 === selectedDate.getDate() &&
                             <GridEvent key={event.id}
                                        eventStart={eventStart}
-                                       eventEnd={stringToDate(event.eventEnd)}
-                                       eventColor={event.eventColor}
-                                       eventContent={event.eventContent}/>
+                                       eventEnd={stringToDate(event.end)}
+                                       eventColor={event.calendarGroup}
+                                       eventTitle={event.title}/>
                         )
                     })}
                 </div>

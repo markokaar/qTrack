@@ -1,12 +1,14 @@
 // @flow
 import * as React from 'react';
 import Nav from 'react-bootstrap/esm/Nav';
-import {FaCalendarDay, FaChevronLeft, FaChevronRight, FaPlusSquare} from 'react-icons/fa';
+import {FaCalendarDay, FaChevronLeft, FaChevronRight} from 'react-icons/fa';
 import {Link} from 'react-router-dom';
 import {NewEvent} from './NewEvent';
+import {IEvent} from "../IEvent";
 
 type Props = {
-    selectedDate: string
+    selectedDate: string,
+    handleAddEvent: (event: IEvent) => void,
 };
 export const CalendarNav = (props: Props) => {
     return (
@@ -34,7 +36,7 @@ export const CalendarNav = (props: Props) => {
             </Nav.Item>
 
             <Nav.Item className="ms-auto border-start">
-                <NewEvent/>
+                <NewEvent handleAddEvent={props.handleAddEvent}/>
             </Nav.Item>
         </Nav>
     );
