@@ -14,6 +14,7 @@ import {PagesNav} from "./components/PagesNav";
 import {useState} from "react";
 import {IEvent} from "./IEvent";
 import sampleEvents from './sampleData.json'
+import moment from "moment";
 
 function App() {
     // Auth
@@ -24,6 +25,9 @@ function App() {
     const [events, setEvents] = useState<IEvent[]>(sampleEvents);
     const addEvent = (event: IEvent) => setEvents(current => [...current, event]);
 
+    // Date
+    const [selectedDate, setSelectedDate] = useState<moment.Moment>(moment("2022-10-16"));
+
     return (
         <BrowserRouter>
             <NavBar isLogged={isLogged} handleLogin={handleLogin}/>
@@ -31,22 +35,22 @@ function App() {
             <Routes>
                 <Route path="/d" element={
                     <>
-                        <CalendarNav selectedDate={'Oct 16, 2022'}
+                        <CalendarNav selectedDate={selectedDate}
                                      handleAddEvent={addEvent}/>
-                        <Day selectedDate={new Date(2022, 9, 16)}
+                        <Day selectedDate={selectedDate}
                              events={events}/>
                     </>
                 }/>
                 <Route path="/w" element={
                     <>
-                        <CalendarNav selectedDate={'10 - 16 Oct 2022'}
+                        <CalendarNav selectedDate={selectedDate}
                                      handleAddEvent={addEvent}/>
                         <Week events={events}/>
                     </>
                 }/>
                 <Route path="/m" element={
                     <>
-                        <CalendarNav selectedDate={'Oct 2022'}
+                        <CalendarNav selectedDate={selectedDate}
                                      handleAddEvent={addEvent}/>
                         <Month/>
                     </>

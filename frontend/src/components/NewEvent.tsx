@@ -18,6 +18,7 @@ import DatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import en from "date-fns/locale/en-GB";
 import {IEvent} from "../IEvent";
+import moment from "moment";
 
 type Props = {
     handleAddEvent: (event: IEvent) => void,
@@ -34,8 +35,8 @@ export const NewEvent = (props: Props) => {
 
     // Event
     const [title, setTitle] = useState<string>("");
-    const [startDate, setStartDate] = useState(new Date(2022, 9, 20, 9, 0));
-    const [endDate, setEndDate] = useState(new Date(2022, 9, 20, 10, 0));
+    const [startDate, setStartDate] = useState<Date>(new Date(2022, 9, 20, 9, 0, 0));
+    const [endDate, setEndDate] = useState<Date>(new Date(2022, 9, 20, 10, 0, 0));
     const [notification, setNotification] = useState(false);
     const [allDay, setAllDay] = useState(false);
     const [repeat, setRepeat] = useState(0);
@@ -48,8 +49,8 @@ export const NewEvent = (props: Props) => {
         props.handleAddEvent({
             id: Math.floor(Math.random() * 1000),
             title: title,
-            start: startDate.toISOString().replace("T", " ").replace(".000Z", ""),
-            end: endDate.toISOString().replace("T", " ").replace(".000Z", ""),
+            start: moment(startDate).format("YYYY-MM-DD hh:mm:ss"),
+            end: moment(endDate).format("YYYY-MM-DD hh:mm:ss"),
             notification: notification,
             repeat: repeat,
             calendarGroup: calendarGroup,

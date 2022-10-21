@@ -1,15 +1,14 @@
 // @flow
 import * as React from 'react';
 import {GridEvent} from '../components/GridEvent';
-import {stringToDate} from "../utils/stringToDate";
 import {IEvent} from "../IEvent";
+import moment from "moment";
 
 type Props = {
     events: IEvent[],
-    selectedDate: Date
+    selectedDate: moment.Moment
 };
 export const Day = (props: Props) => {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     return (
         <>
@@ -20,11 +19,11 @@ export const Day = (props: Props) => {
                     </ul>
 
                     <ul className="selectedDay fw-bold text-muted">
-                        <li>{days[props.selectedDate.getDay()]}</li>
+                        <li>{props.selectedDate.format("dddd")}</li>
                     </ul>
 
                     <ul className="selectedDayNumber fw-bold">
-                        <li>{props.selectedDate.getDate()}</li>
+                        <li>{props.selectedDate.date()}</li>
                     </ul>
                 </div>
 
@@ -61,16 +60,15 @@ export const Day = (props: Props) => {
 
                 <div className="eventsContainer">
                     {props.events.map((event) => {
-                        const eventStart = stringToDate(event.start);
+                        const eventStart = moment(event.start);
 
-                        // TODO: Remove '+1' from eventStart.getDate() if stringToDate.ts (and week view) is fixed.
                         return (
-                            eventStart.getFullYear() === props.selectedDate.getFullYear() &&
-                            eventStart.getMonth() === props.selectedDate.getMonth() &&
-                            eventStart.getDate() + 1 === props.selectedDate.getDate() &&
+                            eventStart.year() === props.selectedDate.year() &&
+                            eventStart.month() === props.selectedDate.month() &&
+                            eventStart.date() === props.selectedDate.date() &&
                             <GridEvent key={event.id}
                                        eventStart={eventStart}
-                                       eventEnd={stringToDate(event.end)}
+                                       eventEnd={moment(event.end)}
                                        eventColor={event.calendarGroup}
                                        eventTitle={event.title}/>
                         )

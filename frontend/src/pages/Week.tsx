@@ -1,7 +1,7 @@
 // @flow
+import moment from 'moment';
 import * as React from 'react';
 import {GridEvent} from '../components/GridEvent';
-import {stringToDate} from "../utils/stringToDate";
 import {IEvent} from "../IEvent";
 
 type Props = {
@@ -79,8 +79,8 @@ export const Week = (props: Props) => {
                     {props.events.map((event) => {
                         return (
                             <GridEvent key={event.id}
-                                       eventStart={stringToDate(event.start)}
-                                       eventEnd={stringToDate(event.end)}
+                                       eventStart={moment(event.start)}
+                                       eventEnd={moment(event.end)}
                                        eventColor={event.calendarGroup}
                                        eventTitle={event.title}/>
                         )
