@@ -14,8 +14,6 @@ type Props = {
 export const CalendarNav = (props: Props) => {
     const location = useLocation().pathname;
 
-    //console.log("sta: " + props.selectedDate.clone().startOf('week').format());
-    //console.log("end: " + props.selectedDate.clone().endOf('week').format());
     // '10 - 16 Oct 2022'
     return (
         <Nav className="bg-light border-top shadow">
@@ -37,7 +35,11 @@ export const CalendarNav = (props: Props) => {
                 <Nav.Link disabled>
                     <span className="align-middle">
                         {location === "/d" && moment(props.selectedDate).format("MMM DD, YYYY")}
-                        {location === "/w" && moment(props.selectedDate).format("DD MMM YYYY")}
+                        {location === "/w" && (
+                            moment(props.selectedDate).clone().weekday(0).date() + " - " +
+                            moment(props.selectedDate).clone().weekday(7).date() +
+                            moment(props.selectedDate).format(" MMM YYYY")
+                        )}
                         {location === "/m" && moment(props.selectedDate).format("MMMM YYYY")}
                     </span>
                 </Nav.Link>
