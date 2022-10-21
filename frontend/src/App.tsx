@@ -33,7 +33,8 @@ function App() {
                     <>
                         <CalendarNav selectedDate={'Oct 16, 2022'}
                                      handleAddEvent={addEvent}/>
-                        <Day/>
+                        <Day selectedDate={new Date(2022, 9, 16)}
+                             events={events}/>
                     </>
                 }/>
                 <Route path="/w" element={

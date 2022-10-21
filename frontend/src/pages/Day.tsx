@@ -1,13 +1,15 @@
 // @flow
 import * as React from 'react';
 import {GridEvent} from '../components/GridEvent';
-import events from '../sampleData.json'
 import {stringToDate} from "../utils/stringToDate";
+import {IEvent} from "../IEvent";
 
-type Props = {};
+type Props = {
+    events: IEvent[],
+    selectedDate: Date
+};
 export const Day = (props: Props) => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const selectedDate = new Date(2022, 9, 16);
 
     return (
         <>
@@ -18,11 +20,11 @@ export const Day = (props: Props) => {
                     </ul>
 
                     <ul className="selectedDay fw-bold text-muted">
-                        <li>{days[selectedDate.getDay()]}</li>
+                        <li>{days[props.selectedDate.getDay()]}</li>
                     </ul>
 
                     <ul className="selectedDayNumber fw-bold">
-                        <li>{selectedDate.getDate()}</li>
+                        <li>{props.selectedDate.getDate()}</li>
                     </ul>
                 </div>
 
@@ -58,14 +60,14 @@ export const Day = (props: Props) => {
                 </div>
 
                 <div className="eventsContainer">
-                    {events.map((event) => {
+                    {props.events.map((event) => {
                         const eventStart = stringToDate(event.start);
 
                         // TODO: Remove '+1' from eventStart.getDate() if stringToDate.ts (and week view) is fixed.
                         return (
-                            eventStart.getFullYear() === selectedDate.getFullYear() &&
-                            eventStart.getMonth() === selectedDate.getMonth() &&
-                            eventStart.getDate() + 1 === selectedDate.getDate() &&
+                            eventStart.getFullYear() === props.selectedDate.getFullYear() &&
+                            eventStart.getMonth() === props.selectedDate.getMonth() &&
+                            eventStart.getDate() + 1 === props.selectedDate.getDate() &&
                             <GridEvent key={event.id}
                                        eventStart={eventStart}
                                        eventEnd={stringToDate(event.end)}
