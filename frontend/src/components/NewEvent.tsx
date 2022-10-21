@@ -60,10 +60,11 @@ export const NewEvent = (props: Props) => {
                         <Row className="mb-1">
                             <Col>
                                 <InputGroup>
-                                    <InputGroup.Text id="startDate">
-                                        <FaCalendarDay/>
-                                    </InputGroup.Text>
                                     <div className="d-flex flex-fill">
+                                        <InputGroup.Text id="startDate"
+                                                         className="rounded-0 rounded-start border-end-0">
+                                            <FaCalendarDay/>
+                                        </InputGroup.Text>
                                         <DatePicker
                                             className="form-control rounded-0 rounded-end"
                                             locale={locale}
@@ -99,10 +100,11 @@ export const NewEvent = (props: Props) => {
                         <Row className="mb-1">
                             <Col>
                                 <InputGroup>
-                                    <InputGroup.Text id="endDate">
-                                        <FaCalendarDay/>
-                                    </InputGroup.Text>
                                     <div className="d-flex flex-fill">
+                                        <InputGroup.Text id="endDate"
+                                                         className="rounded-0 rounded-start border-end-0">
+                                            <FaCalendarDay/>
+                                        </InputGroup.Text>
                                         <DatePicker
                                             className="form-control rounded-0 rounded-end"
                                             locale={locale}
