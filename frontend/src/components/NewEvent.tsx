@@ -13,7 +13,6 @@ import {
     FaPlusSquare,
     FaSyncAlt,
 } from "react-icons/fa";
-
 import DatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import en from "date-fns/locale/en-GB";
@@ -56,7 +55,16 @@ export const NewEvent = (props: Props) => {
             calendarGroup: calendarGroup,
             description: description
         });
-        setShow(false)
+        setTitle("");
+        setStartDate(new Date(2022, 9, 20, 9, 0, 0));
+        setEndDate(new Date(2022, 9, 20, 10, 0, 0));
+        setNotification(false);
+        setRepeat(0);
+        setCalendarGroup("lightblue");
+        setDescription("");
+
+        setAllDay(false);
+        setShow(false);
     }
 
     return (
@@ -174,6 +182,7 @@ export const NewEvent = (props: Props) => {
                                     type="switch"
                                     id="notificationSwitch"
                                     label="Add notification"
+                                    checked={notification}
                                     onClick={() => setNotification(old => !old)}
                                 />
                             </Col>
@@ -182,6 +191,7 @@ export const NewEvent = (props: Props) => {
                                     type="switch"
                                     id="allDaySwitch"
                                     label="All day"
+                                    checked={allDay}
                                     onClick={() => setAllDay(old => !old)}
                                 />
                             </Col>
@@ -193,6 +203,7 @@ export const NewEvent = (props: Props) => {
                             </InputGroup.Text>
                             <Form.Select
                                 aria-label="Event repeats"
+                                value={repeat}
                                 onChange={e => setRepeat(parseInt(e.target.value, 10))}
                             >
                                 <option value="0">Does not repeat</option>
@@ -210,6 +221,7 @@ export const NewEvent = (props: Props) => {
                             </InputGroup.Text>
                             <Form.Select
                                 aria-label="Calendar type"
+                                value={calendarGroup}
                                 onChange={e => setCalendarGroup(e.target.value)}
                             >
                                 <option value="1">Default calendar</option>
@@ -223,8 +235,8 @@ export const NewEvent = (props: Props) => {
                             <Form.Control
                                 as="textarea"
                                 rows={3}
-                                onChange={e => setDescription(e.target.value)}
                                 value={description}
+                                onChange={e => setDescription(e.target.value)}
                             />
                         </Form.Group>
                     </Form>

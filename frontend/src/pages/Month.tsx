@@ -56,10 +56,14 @@ export const Month = (props: Props) => {
                     {dates.map((d) => {
                             const weekDay = getWeekDay(d - 1);
                             const row = Math.floor((d + (getWeekDay(dates[0]) - 2)) / 7);
+                            const todayBox: string =
+                                props.selectedDate.month() === moment().month() &&
+                                props.selectedDate.year() === moment().year() &&
+                                d === moment().date() ? "text-bg-dark" : "text-bg-light"
 
                             return (
                                 <div key={d}
-                                     className="eventBox monthDayNumber text-bg-light rounded-0"
+                                     className={`eventBox monthDayNumber ${todayBox} rounded-0`}
                                      style={{
                                          zIndex: 0,
                                          gridRow: (row * 5) + 1,
