@@ -66,7 +66,7 @@ export const NewEvent = (props: Props) => {
                 onClick={handleShow}
             >
                 <FaPlusSquare className="align-middle"/>
-                <span className="align-middle"> New event</span>
+                <span className="align-middle d-none d-sm-inline"> New event</span>
             </Button>
 
             <Modal show={show} onHide={handleClose}>

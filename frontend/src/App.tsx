@@ -27,7 +27,6 @@ function App() {
 
     // Date
     const [selectedDate, setSelectedDate] = useState<moment.Moment>(moment("2022-10-15"));
-
     const handleNextDay = (timeframe: moment.Duration) => {
         setSelectedDate(moment(selectedDate.add(timeframe)));
     }
@@ -36,6 +35,14 @@ function App() {
     }
     const handleToday = () => setSelectedDate(moment());
 
+    // CalendarNav
+    const calNav: JSX.Element =
+        <CalendarNav selectedDate={selectedDate}
+                     handleAddEvent={addEvent}
+                     handleNextDay={handleNextDay}
+                     handlePreviousDay={handlePreviousDay}
+                     handleToday={handleToday}
+        />;
 
     return (
         <BrowserRouter>
@@ -43,35 +50,20 @@ function App() {
             <Routes>
                 <Route path="/d" element={
                     <>
-                        <CalendarNav selectedDate={selectedDate}
-                                     handleAddEvent={addEvent}
-                                     handleNextDay={handleNextDay}
-                                     handlePreviousDay={handlePreviousDay}
-                                     handleToday={handleToday}
-                        />
+                        {calNav}
                         <Day selectedDate={selectedDate}
                              events={events}/>
                     </>
                 }/>
                 <Route path="/w" element={
                     <>
-                        <CalendarNav selectedDate={selectedDate}
-                                     handleAddEvent={addEvent}
-                                     handleNextDay={handleNextDay}
-                                     handlePreviousDay={handlePreviousDay}
-                                     handleToday={handleToday}
-                        />
+                        {calNav}
                         <Week events={events}/>
                     </>
                 }/>
                 <Route path="/m" element={
                     <>
-                        <CalendarNav selectedDate={selectedDate}
-                                     handleAddEvent={addEvent}
-                                     handleNextDay={handleNextDay}
-                                     handlePreviousDay={handlePreviousDay}
-                                     handleToday={handleToday}
-                        />
+                        {calNav}
                         <Month/>
                     </>
                 }/>
