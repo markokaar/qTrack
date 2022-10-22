@@ -3,32 +3,57 @@ import * as React from 'react';
 import moment from "moment";
 import Nav from 'react-bootstrap/esm/Nav';
 import {FaCalendarDay, FaChevronLeft, FaChevronRight} from 'react-icons/fa';
-import {Link, useLocation} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import {NewEvent} from './NewEvent';
 import {IEvent} from "../IEvent";
+import Button from 'react-bootstrap/esm/Button';
 
 type Props = {
     selectedDate: moment.Moment,
     handleAddEvent: (event: IEvent) => void,
+    handleNextDay: (timeframe: moment.Duration) => void,
+    handlePreviousDay: (timeframe: moment.Duration) => void,
+    handleToday: () => void
 };
 export const CalendarNav = (props: Props) => {
     const location = useLocation().pathname;
 
-    // '10 - 16 Oct 2022'
+    const handleNext = () => {
+        location === "/d" && props.handleNextDay(moment.duration(1, 'days'));
+        location === "/w" && props.handleNextDay(moment.duration(1, 'weeks'));
+        location === "/m" && props.handleNextDay(moment.duration(1, 'months'));
+    }
+
+    const handlePrevious = () => {
+        location === "/d" && props.handlePreviousDay(moment.duration(1, 'days'));
+        location === "/w" && props.handlePreviousDay(moment.duration(1, 'weeks'));
+        location === "/m" && props.handlePreviousDay(moment.duration(1, 'months'));
+    }
+
     return (
         <Nav className="bg-light border-top shadow">
             <Nav.Item>
-                <Link to="" className="nav-link link-dark">
+                <Button className="btn-light rounded-0 nav-link link-dark"
+                        onClick={() => props.handleToday()}
+                >
                     <FaCalendarDay/>
                     <span className="align-middle"> Today</span>
-                </Link>
+                </Button>
             </Nav.Item>
             <div className="vr"></div>
             <Nav.Item>
-                <Link to="" className="nav-link link-dark"><FaChevronLeft/></Link>
+                <Button className="btn-light rounded-0 nav-link link-dark"
+                        onClick={() => handlePrevious()}
+                >
+                    <FaChevronLeft/>
+                </Button>
             </Nav.Item>
             <Nav.Item>
-                <Link to="" className="nav-link link-dark"><FaChevronRight/></Link>
+                <Button className="btn-light rounded-0 nav-link link-dark"
+                        onClick={() => handleNext()}
+                >
+                    <FaChevronRight/>
+                </Button>
             </Nav.Item>
             <div className="vr"></div>
             <Nav.Item>
@@ -37,8 +62,7 @@ export const CalendarNav = (props: Props) => {
                         {location === "/d" && moment(props.selectedDate).format("MMM DD, YYYY")}
                         {location === "/w" && (
                             moment(props.selectedDate).clone().weekday(0).date() + " - " +
-                            moment(props.selectedDate).clone().weekday(7).date() +
-                            moment(props.selectedDate).format(" MMM YYYY")
+                            moment(props.selectedDate).clone().weekday(7).format("D MMM YYYY")
                         )}
                         {location === "/m" && moment(props.selectedDate).format("MMMM YYYY")}
                     </span>

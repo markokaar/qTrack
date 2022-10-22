@@ -18,7 +18,7 @@ import moment from "moment";
 
 function App() {
     // Auth
-    const [isLogged, setIsLogged] = useState<boolean>(false);
+    const [isLogged, setIsLogged] = useState<boolean>(true);
     const handleLogin = () => setIsLogged((previous) => !previous);
 
     // Events
@@ -26,17 +26,29 @@ function App() {
     const addEvent = (event: IEvent) => setEvents(current => [...current, event]);
 
     // Date
-    const [selectedDate, setSelectedDate] = useState<moment.Moment>(moment("2022-10-16"));
+    const [selectedDate, setSelectedDate] = useState<moment.Moment>(moment("2022-10-15"));
+
+    const handleNextDay = (timeframe: moment.Duration) => {
+        setSelectedDate(moment(selectedDate.add(timeframe)));
+    }
+    const handlePreviousDay = (timeframe: moment.Duration) => {
+        setSelectedDate(moment(selectedDate.subtract(timeframe)));
+    }
+    const handleToday = () => setSelectedDate(moment());
+
 
     return (
         <BrowserRouter>
             <NavBar isLogged={isLogged} handleLogin={handleLogin}/>
-
             <Routes>
                 <Route path="/d" element={
                     <>
                         <CalendarNav selectedDate={selectedDate}
-                                     handleAddEvent={addEvent}/>
+                                     handleAddEvent={addEvent}
+                                     handleNextDay={handleNextDay}
+                                     handlePreviousDay={handlePreviousDay}
+                                     handleToday={handleToday}
+                        />
                         <Day selectedDate={selectedDate}
                              events={events}/>
                     </>
@@ -44,14 +56,22 @@ function App() {
                 <Route path="/w" element={
                     <>
                         <CalendarNav selectedDate={selectedDate}
-                                     handleAddEvent={addEvent}/>
+                                     handleAddEvent={addEvent}
+                                     handleNextDay={handleNextDay}
+                                     handlePreviousDay={handlePreviousDay}
+                                     handleToday={handleToday}
+                        />
                         <Week events={events}/>
                     </>
                 }/>
                 <Route path="/m" element={
                     <>
                         <CalendarNav selectedDate={selectedDate}
-                                     handleAddEvent={addEvent}/>
+                                     handleAddEvent={addEvent}
+                                     handleNextDay={handleNextDay}
+                                     handlePreviousDay={handlePreviousDay}
+                                     handleToday={handleToday}
+                        />
                         <Month/>
                     </>
                 }/>
