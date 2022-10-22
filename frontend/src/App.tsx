@@ -65,7 +65,8 @@ function App() {
                 <Route path="/m" element={
                     <>
                         {calNav}
-                        <Month/>
+                        <Month events={events}
+                               selectedDate={selectedDate}/>
                     </>
                 }/>
 
