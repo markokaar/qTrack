@@ -5,7 +5,8 @@ import {GridEvent} from '../components/GridEvent';
 import {IEvent} from "../IEvent";
 
 type Props = {
-    events: IEvent[]
+    events: IEvent[],
+    selectedDate: moment.Moment
 };
 export const Week = (props: Props) => {
 
@@ -24,23 +25,23 @@ export const Week = (props: Props) => {
                     </ul>
 
                     <ul className="weekDays fw-bold text-muted">
-                        <li>Mon</li>
-                        <li>Tue</li>
-                        <li>Wed</li>
-                        <li>Thu</li>
-                        <li>Fri</li>
-                        <li>Sat</li>
-                        <li>Sun</li>
+                        <li>{moment(props.selectedDate).clone().weekday(1).format("ddd")}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(2).format("ddd")}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(3).format("ddd")}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(4).format("ddd")}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(5).format("ddd")}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(6).format("ddd")}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(7).format("ddd")}</li>
                     </ul>
 
                     <ul className="dayNumbers fw-bold">
-                        <li>10</li>
-                        <li>11</li>
-                        <li>12</li>
-                        <li>13</li>
-                        <li>14</li>
-                        <li>15</li>
-                        <li>16</li>
+                        <li>{moment(props.selectedDate).clone().weekday(1).date()}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(2).date()}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(3).date()}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(4).date()}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(5).date()}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(6).date()}</li>
+                        <li>{moment(props.selectedDate).clone().weekday(7).date()}</li>
                     </ul>
                 </div>
 
@@ -77,9 +78,14 @@ export const Week = (props: Props) => {
 
                 <div className="eventsContainer eventsContainerWeek">
                     {props.events.map((event) => {
+                        const eventStart = moment(event.start);
+
                         return (
+                            eventStart.year() === props.selectedDate.year() &&
+                            eventStart.month() === props.selectedDate.month() &&
+                            eventStart.week() === props.selectedDate.week() &&
                             <GridEvent key={event.id}
-                                       eventStart={moment(event.start)}
+                                       eventStart={eventStart}
                                        eventEnd={moment(event.end)}
                                        eventColor={event.calendarGroup}
                                        eventTitle={event.title}/>

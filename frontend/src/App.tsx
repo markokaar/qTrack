@@ -51,14 +51,15 @@ function App() {
                 <Route path="/d" element={
                     <>
                         {calNav}
-                        <Day selectedDate={selectedDate}
-                             events={events}/>
+                        <Day events={events}
+                             selectedDate={selectedDate}/>
                     </>
                 }/>
                 <Route path="/w" element={
                     <>
                         {calNav}
-                        <Week events={events}/>
+                        <Week events={events}
+                              selectedDate={selectedDate}/>
                     </>
                 }/>
                 <Route path="/m" element={
