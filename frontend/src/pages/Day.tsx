@@ -66,11 +66,7 @@ export const Day = (props: Props) => {
                             eventStart.year() === props.selectedDate.year() &&
                             eventStart.month() === props.selectedDate.month() &&
                             eventStart.date() === props.selectedDate.date() &&
-                            <GridEvent key={event.id}
-                                       eventStart={eventStart}
-                                       eventEnd={moment(event.end)}
-                                       eventColor={event.calendarGroup}
-                                       eventTitle={event.title}/>
+                            <GridEvent key={event.id} event={event}/>
                         )
                     })}
                 </div>

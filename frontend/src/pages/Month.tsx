@@ -59,7 +59,7 @@ export const Month = (props: Props) => {
                             const todayBox: string =
                                 props.selectedDate.month() === moment().month() &&
                                 props.selectedDate.year() === moment().year() &&
-                                d === moment().date() ? "text-bg-dark" : "text-bg-light"
+                                d === moment().date() ? "text-bg-warning" : "text-bg-light"
 
                             return (
                                 <div key={d}

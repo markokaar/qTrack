@@ -26,7 +26,7 @@ function App() {
     const addEvent = (event: IEvent) => setEvents(current => [...current, event]);
 
     // Date
-    const [selectedDate, setSelectedDate] = useState<moment.Moment>(moment("2022-10-15"));
+    const [selectedDate, setSelectedDate] = useState<moment.Moment>(moment());
     const handleNextDay = (timeframe: moment.Duration) => {
         setSelectedDate(moment(selectedDate.add(timeframe)));
     }
