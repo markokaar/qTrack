@@ -34,8 +34,8 @@ export const NewEvent = (props: Props) => {
 
     // Event
     const [title, setTitle] = useState<string>("");
-    const [startDate, setStartDate] = useState<Date>(new Date(2022, 9, 20, 9, 0, 0));
-    const [endDate, setEndDate] = useState<Date>(new Date(2022, 9, 20, 10, 0, 0));
+    const [startDate, setStartDate] = useState<Date>(new Date(moment().minutes(0).toDate()));
+    const [endDate, setEndDate] = useState<Date>(new Date(moment().minutes(0).add(1, 'hours').toDate()));
     const [notification, setNotification] = useState(false);
     const [allDay, setAllDay] = useState(false);
     const [repeat, setRepeat] = useState(0);
@@ -48,16 +48,16 @@ export const NewEvent = (props: Props) => {
         props.handleAddEvent({
             id: Math.floor(Math.random() * 1000),
             title: title,
-            start: moment(startDate).format("YYYY-MM-DD hh:mm:ss"),
-            end: moment(endDate).format("YYYY-MM-DD hh:mm:ss"),
+            start: moment(startDate).format("YYYY-MM-DD HH:mm:ss"),
+            end: moment(endDate).format("YYYY-MM-DD HH:mm:ss"),
             notification: notification,
             repeat: repeat,
             calendarGroup: calendarGroup,
             description: description
         });
         setTitle("");
-        setStartDate(new Date(2022, 9, 20, 9, 0, 0));
-        setEndDate(new Date(2022, 9, 20, 10, 0, 0));
+        setStartDate(new Date(moment().minutes(0).toDate()));
+        setEndDate(new Date(moment().minutes(0).add(1, 'hours').toDate()));
         setNotification(false);
         setRepeat(0);
         setCalendarGroup("lightblue");
@@ -183,7 +183,7 @@ export const NewEvent = (props: Props) => {
                                     id="notificationSwitch"
                                     label="Add notification"
                                     checked={notification}
-                                    onClick={() => setNotification(old => !old)}
+                                    onChange={() => setNotification(old => !old)}
                                 />
                             </Col>
                             <Col xs={4}>
@@ -192,7 +192,7 @@ export const NewEvent = (props: Props) => {
                                     id="allDaySwitch"
                                     label="All day"
                                     checked={allDay}
-                                    onClick={() => setAllDay(old => !old)}
+                                    onChange={() => setAllDay(old => !old)}
                                 />
                             </Col>
                         </Row>

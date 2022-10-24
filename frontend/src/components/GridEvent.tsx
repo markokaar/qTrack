@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/esm/Col';
 import Stack from 'react-bootstrap/esm/Stack';
 import {FaEdit, FaRegBell, FaTrash} from 'react-icons/fa';
 import {IEvent} from "../IEvent";
+import {useLocation} from 'react-router-dom';
 
 // Event length in minutes // 1 min step.
 // Event start display format is "700" = 07:00. // 15 min step.
@@ -54,7 +55,7 @@ export const GridEvent = (props: Props) => {
 
     return (
         <OverlayTrigger trigger="click"
-                        placement={startDay < 3 ? "right" : "left"}
+                        placement={useLocation().pathname === "/d" ? "top" : (startDay < 3 ? "right" : "left")}
                         overlay={popover}>
             <Button className="eventBox text-black text-start w-100"
                     style={{
