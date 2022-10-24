@@ -255,7 +255,7 @@ export const NewEvent = (props: Props) => {
                         onClick={addEvent}
                         className="shadow-sm"
                     >
-                        Save Changes
+                        Save
                     </Button>
                 </Modal.Footer>
             </Modal>
