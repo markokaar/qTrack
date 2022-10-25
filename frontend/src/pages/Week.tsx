@@ -6,7 +6,8 @@ import {IEvent} from "../IEvent";
 
 type Props = {
     events: IEvent[],
-    selectedDate: moment.Moment
+    selectedDate: moment.Moment,
+    handleDeleteEvent: (event: IEvent) => void
 };
 export const Week = (props: Props) => {
 
@@ -84,7 +85,9 @@ export const Week = (props: Props) => {
                             eventStart.year() === props.selectedDate.year() &&
                             eventStart.month() === props.selectedDate.month() &&
                             eventStart.week() === props.selectedDate.week() &&
-                            <GridEvent key={event.id} event={event}/>
+                            <GridEvent key={event.id}
+                                       event={event}
+                                       handleDeleteEvent={props.handleDeleteEvent}/>
                         )
                     })}
                 </div>

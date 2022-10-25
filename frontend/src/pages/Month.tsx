@@ -5,7 +5,8 @@ import {IEvent} from "../IEvent";
 
 type Props = {
     events: IEvent[],
-    selectedDate: moment.Moment
+    selectedDate: moment.Moment,
+    handleDeleteEvent: (event: IEvent) => void
 };
 export const Month = (props: Props) => {
     const dates: number[] = [];

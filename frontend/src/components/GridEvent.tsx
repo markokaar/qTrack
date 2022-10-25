@@ -15,6 +15,7 @@ import {useLocation} from 'react-router-dom';
 // Event start display format is "700" = 07:00. // 15 min step.
 type Props = {
     event: IEvent,
+    handleDeleteEvent: (event: IEvent) => void,
 };
 
 export const GridEvent = (props: Props) => {
@@ -38,6 +39,7 @@ export const GridEvent = (props: Props) => {
                         variant="outline-dark"
                         className="shadow-sm me-1"
                         size="sm"
+                        onClick={() => props.handleDeleteEvent(event)}
                     >
                         <FaTrash/>
                     </Button>

@@ -24,6 +24,7 @@ function App() {
     // Events
     const [events, setEvents] = useState<IEvent[]>(sampleEvents);
     const addEvent = (event: IEvent) => setEvents(current => [...current, event]);
+    const deleteEvent = (event: IEvent) => setEvents(oldEvents => oldEvents.filter((val) => val.id !== event.id));
 
     // Date
     const [selectedDate, setSelectedDate] = useState<moment.Moment>(moment());
@@ -52,21 +53,24 @@ function App() {
                     <>
                         {calNav}
                         <Day events={events}
-                             selectedDate={selectedDate}/>
+                             selectedDate={selectedDate}
+                             handleDeleteEvent={deleteEvent}/>
                     </>
                 }/>
                 <Route path="/w" element={
                     <>
                         {calNav}
                         <Week events={events}
-                              selectedDate={selectedDate}/>
+                              selectedDate={selectedDate}
+                              handleDeleteEvent={deleteEvent}/>
                     </>
                 }/>
                 <Route path="/m" element={
                     <>
                         {calNav}
                         <Month events={events}
-                               selectedDate={selectedDate}/>
+                               selectedDate={selectedDate}
+                               handleDeleteEvent={deleteEvent}/>
                     </>
                 }/>
 
