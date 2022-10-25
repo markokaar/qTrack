@@ -1,6 +1,12 @@
 // @flow
 import moment from 'moment';
 import * as React from 'react';
+import Button from 'react-bootstrap/esm/Button';
+import Col from 'react-bootstrap/esm/Col';
+import OverlayTrigger from 'react-bootstrap/esm/OverlayTrigger';
+import Popover from 'react-bootstrap/esm/Popover';
+import Row from 'react-bootstrap/esm/Row';
+import {FaEdit, FaTrash} from 'react-icons/fa';
 import {IEvent} from "../IEvent";
 
 type Props = {
@@ -11,11 +17,39 @@ type Props = {
 export const Month = (props: Props) => {
     const dates: number[] = [];
     for (let i = 1; i <= moment(props.selectedDate).daysInMonth(); i++) {
-        dates.push(i)
+        dates.push(i);
     }
 
     const getWeekDay = (dayNumber: number): number =>
         new Date(props.selectedDate.year(), props.selectedDate.month(), dayNumber).getDay();
+
+    const popover = (event: IEvent) => (
+        <Popover id="event-popover">
+            <Popover.Body>
+                <Row><Col><h5>{event.title}</h5></Col></Row>
+                <Row><Col>{moment(event.start).format('MMM Do YYYY, hh:mm')}-{moment(event.end).format("hh:mm")}</Col></Row>
+                <Row className="mt-2"><Col>{event.description}</Col></Row>
+
+                <div className="mt-2">
+                    <Button
+                        variant="outline-dark"
+                        className="shadow-sm me-1"
+                        size="sm"
+                        onClick={() => props.handleDeleteEvent(event)}
+                    >
+                        <FaTrash/>
+                    </Button>
+                    <Button
+                        variant="outline-dark"
+                        className="shadow-sm"
+                        size="sm"
+                    >
+                        <FaEdit/>
+                    </Button>
+                </div>
+            </Popover.Body>
+        </Popover>
+    );
 
     return (
         <>
@@ -60,7 +94,7 @@ export const Month = (props: Props) => {
                             const todayBox: string =
                                 props.selectedDate.month() === moment().month() &&
                                 props.selectedDate.year() === moment().year() &&
-                                d === moment().date() ? "text-bg-warning" : "text-bg-light"
+                                d === moment().date() ? "text-bg-warning" : "text-bg-light";
 
                             return (
                                 <div key={d}
@@ -84,15 +118,20 @@ export const Month = (props: Props) => {
                             return (
                                 eventStart.year() === props.selectedDate.year() &&
                                 eventStart.month() === props.selectedDate.month() &&
-                                <div key={event.id}
-                                     className="eventBox eventBoxMonth"
-                                     style={{
-                                         gridRow: (weekRow * 5) - 3,
-                                         gridColumn: `${startDay} / ${startDay + 1}`,
-                                         borderLeft: `7px solid ${event.calendarGroup}`
-                                     }}>
-                                    <span>{event.title.substring(0, 5)}...</span>
-                                </div>
+                                <OverlayTrigger key={event.id}
+                                                trigger="click"
+                                                placement={startDay < 3 ? "right" : "left"}
+                                                overlay={popover(event)}>
+                                    <Button
+                                        className="eventBox eventBoxMonth text-black text-start bg-transparent"
+                                        style={{
+                                            gridRow: (weekRow * 5) - 3,
+                                            gridColumn: `${startDay} / ${startDay + 1}`,
+                                            borderLeft: `7px solid ${event.calendarGroup}`
+                                        }}>
+                                        <span>{event.title.substring(0, 5)}...</span>
+                                    </Button>
+                                </OverlayTrigger>
                             )
                         }
                     )}
