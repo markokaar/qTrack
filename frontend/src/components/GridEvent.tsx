@@ -24,14 +24,14 @@ export const GridEvent = (props: Props) => {
 
     // TODO: Temporary, until locale fixed.
     const startDay = eventStart.day() === 0 ? 7 : eventStart.day();
-    const startTime = eventStart.hours() * 100 + eventStart.minutes() * 100 / 60
+    const startTime = eventStart.hours() * 100 + eventStart.minutes() * 100 / 60;
     const eventLength: number = moment.duration(moment(event.end).diff(eventStart)).asMinutes();
 
     const popover = (
         <Popover id="event-popover">
             <Popover.Body>
                 <Row><Col><h5>{event.title}</h5></Col></Row>
-                <Row><Col>{moment(event.start).format('MMM Do YYYY, hh:mm')}-{moment(event.end).format("hh:mm")}</Col></Row>
+                <Row><Col>{moment(event.start).format('MMM Do YYYY, HH:mm')}-{moment(event.end).format("HH:mm")}</Col></Row>
                 <Row className="mt-2"><Col>{event.description}</Col></Row>
 
                 <div className="mt-2">
@@ -57,7 +57,7 @@ export const GridEvent = (props: Props) => {
 
     return (
         <OverlayTrigger trigger="click"
-                        placement={useLocation().pathname === "/d" ? "top" : (startDay < 3 ? "right" : "left")}
+                        placement={useLocation().pathname === "/d" ? "top" : (startDay <= 3 ? "right" : "left")}
                         overlay={popover}>
             <Button className="eventBox text-black text-start w-100"
                     style={{
