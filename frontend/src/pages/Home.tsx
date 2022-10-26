@@ -1,4 +1,5 @@
 // @flow
+import moment from 'moment';
 import * as React from 'react';
 import Card from 'react-bootstrap/esm/Card';
 import Col from 'react-bootstrap/esm/Col';
@@ -7,9 +8,27 @@ import ListGroup from 'react-bootstrap/esm/ListGroup';
 import Row from 'react-bootstrap/esm/Row';
 import {FaRegBell, FaRegCompass, FaRegPlusSquare} from 'react-icons/fa';
 import {Notification} from "../components/Notification";
+import {useEffect, useState} from "react";
+import {IEvent} from "../IEvent";
+import {NewEvent} from '../components/NewEvent';
 
-type Props = {};
+type Props = {
+    events: IEvent[],
+    handleAddEvent: (event: IEvent) => void
+};
 export const Home = (props: Props) => {
+    const [currentTime, setCurrentTime] = useState<moment.Moment>(moment());
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTime(moment());
+        }, 1000);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [])
+
     return (
         <Container fluid className="mt-3">
             <Row>
@@ -19,11 +38,16 @@ export const Home = (props: Props) => {
                             <FaRegCompass className="align-middle"/>
                             <span className="align-middle"> Overview</span>
                         </Card.Header>
+                        <div className="bg-light px-3 py-2 border-bottom">
+                            <h5 className="mb-0">{currentTime.format('dddd, MMM Do YYYY')}</h5>
+                            <h5 className="mb-0">{currentTime.format('HH:mm:ss')}</h5>
+                        </div>
                         <Card.Body>
                             You have <b>4 events</b> today.<br/>
                             Next event: <b>09:00</b> (in 1h 37min).
                         </Card.Body>
                     </Card>
+
                     <Card className="mt-2 shadow-sm">
                         <Card.Header>
                             <FaRegPlusSquare className="align-middle"/>

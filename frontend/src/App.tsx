@@ -80,7 +80,7 @@ function App() {
                         <Index/>
                     </>
                 }/>
-                <Route path="/home" element={<Home/>}/>
+                <Route path="/home" element={<Home events={events} handleAddEvent={addEvent}/>}/>
                 <Route path="/account" element={<Account/>}/>
                 <Route path="/settings" element={<Settings/>}/>
                 {/* <Route path="/logout" element={"Coming soon."}/> */}
